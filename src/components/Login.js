@@ -2,17 +2,44 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import GoogleButton from "react-google-button";
+//import GoogleButton from "react-google-button";
 import { useUserAuth } from "../components/context/UserAuthContext";
+import './Signup.css';
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const { logIn, googleSignIn } = useUserAuth();
+  const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+      // Set initial error values to empty
+  setEmailError('')
+  setPasswordError('')
+
+  // Check if the user has entered both fields correctly
+  if ('' === email) {
+    setEmailError('Please enter your email')
+    return
+  }
+
+  if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+    setEmailError('Please enter a valid email')
+    return
+  }
+
+  if ('' === password) {
+    setPasswordError('Please enter a password')
+    return
+  }
+
+  if (password.length < 7) {
+    setPasswordError('The password must be 8 characters or longer')
+    return
+  }
     e.preventDefault();
     setError("");
     try {
@@ -23,59 +50,50 @@ const Login = () => {
     }
   };
 
-  const handleGoogleSignIn = async (e) => {
-    e.preventDefault();
-    try {
-      await googleSignIn();
-      navigate("/home");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const handleGoogleSignIn = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await googleSignIn();
+  //     navigate("/home");
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   return (
     <>
-      <div className="p-4 box">
-        <h2 className="mb-3">Firebase/ React Auth Login</h2>
-
-        {error && <Alert variant="danger">{error}</Alert>}
-
-        <Form onSubmit={handleSubmit}>
-          
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="email"
-              placeholder="Email address"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-
-          <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
-              Log In
-            </Button>
-          </div>
-        </Form>
-        <hr />
-        <div>
-          <GoogleButton
-            className="g-btn"
-            type="dark"
-            onClick={handleGoogleSignIn}
-          />
-        </div>
+      <div className={'mainContainer'}>
+      <div className={'titleContainer'}>
+        <div>Login</div>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={email}
+          placeholder="Enter your email here"
+          onChange={(ev) => setEmail(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{emailError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={password}
+          placeholder="Enter your password here"
+          onChange={(ev) => setPassword(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{passwordError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input className={'inputButton'} type="button" onClick={handleSubmit} value={'Log in'} />
       </div>
       <div className="p-4 box mt-3 text-center">
         Don't have an account? <Link to="/signup">Sign up</Link>
       </div>
+    </div>
     </>
   );
 };

@@ -3,11 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../components/context/UserAuthContext";
+import "./Signup.css";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
 
@@ -24,39 +27,48 @@ const Signup = () => {
 
   return (
     <>
-      <div className="p-4 box">
-        <h2 className="mb-3">Firebase/ React Auth Signup</h2>
-        
-        {error && <Alert variant="danger">{error}</Alert>}
-
-        <Form onSubmit={handleSubmit}>
-
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="email"
-              placeholder="Email address"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-
-          <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
-              Sign up
-            </Button>
-          </div>
-        </Form>
+      <div className={'mainContainer'}>
+      <div className={'titleContainer'}>
+        <div>Signup</div>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={email}
+          placeholder="Enter your email here"
+          onChange={(ev) => setEmail(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{emailError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={password}
+          placeholder="Enter your password here"
+          onChange={(ev) => setPassword(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{passwordError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={password}
+          placeholder="Re-enter your password here"
+          onChange={(ev) => setPassword(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{passwordError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input className={'inputButton'} type="button" onClick={handleSubmit} value={'Log in'} />
       </div>
       <div className="p-4 box mt-3 text-center">
-        Already have an account? <Link to="/">Log In</Link>
+        Already have an account? <Link to="/">Login</Link>
       </div>
+    </div>
     </>
   );
 };

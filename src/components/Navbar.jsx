@@ -59,18 +59,9 @@ export const Home_Navbar = ({setCategory}) => {
         <li className="nav-item">
           <a className="nav-link" onClick={()=> navigate("/News")}>Latest News</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" >Demo</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("health")} >Demo</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("sports")}>Demo</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" onClick={()=>setCategory("entertainment")}>Demo</a>
-        </li>
+       <li className="nav-item">
+        <a className="nav-link" onClick={()=> navigate("/Blogs")}>Blogs</a>
+       </li>
         <li>
         <Button variant="primary" onClick={handleLogout}>
             Log out
