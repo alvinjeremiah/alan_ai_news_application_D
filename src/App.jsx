@@ -4,6 +4,11 @@ import wordsToNumbers from 'words-to-numbers';
 
 import Sign from './components/Signup.js'
 import Login from './components/Login.js'
+import About from './pages/home/About.js';
+import ContactUS from './pages/home/ContactUS.js';
+import Footer from './components/Footer/Footer.jsx';
+import Discover from './pages/home/discover/Discover.jsx';
+import Homes from './pages/home/mainContent/homes/Home.jsx';
 
 import NewsCards from './components/NewsCards/NewsCards.js';
 import useStyles from './styles.js';
@@ -90,11 +95,14 @@ const classes = useStyles();
               />
               <Route path="/" element={<Login />} />
               <Route path="/signup" element={<Sign />} />
+              <Route path="/about" element={<About />}/>
+              <Route path="/contact" element={<ContactUS />}/>
             </Routes>
           </UserAuthContextProvider>
-        
-  
             
+            <Homes />
+            <Discover/>
+            <Footer/>
         </div>
     );
 }

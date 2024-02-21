@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../components/context/UserAuthContext";
+import Card from 'react-bootstrap/Card';
 import "./Signup.css";
 
 const Signup = () => {
@@ -27,6 +28,7 @@ const Signup = () => {
 
   return (
     <>
+    
       <div className={'mainContainer'}>
       <div className={'titleContainer'}>
         <div>Signup</div>
@@ -69,6 +71,7 @@ const Signup = () => {
         Already have an account? <Link to="/">Login</Link>
       </div>
     </div>
+    
     </>
   );
 };

@@ -48,29 +48,34 @@ export const Home_Navbar = ({setCategory}) => {
     }
   };
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme = "dark">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#"><span className="badge bg-light text-dark fs-4">NewsMag</span></a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">       
-        <li className="nav-item">
-          <a className="nav-link" onClick={()=> navigate("/News")}>Latest News</a>
-        </li>
-       <li className="nav-item">
-        <a className="nav-link" onClick={()=> navigate("/Blogs")}>Blogs</a>
-       </li>
-        <li>
-        <Button variant="primary" onClick={handleLogout}>
-            Log out
-          </Button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" background-color="be">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#"><span className="badge bg-light text-dark fs-4">NewsMag</span></a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => navigate("/News")}>Latest News</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => navigate("/contact")}>Contact Us</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" onClick={() => navigate("/about")}>About</a>
+            </li>
+          </ul>
+          <ul className="navbar-nav ms-auto"> 
+            <li className="nav-item">
+              <Button className="btn-logout" variant="primary" onClick={handleLogout}>
+                Log out
+              </Button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   )
 }
 
